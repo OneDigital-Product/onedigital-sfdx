@@ -28,7 +28,7 @@ function createAuthFile() {
 }
 
 function authSFDX() {
-  const params = '--setdefaultdevhubusername --setdefaultusername -a OD_PROD -d'
+  const params = '--setdefaultdevhubusername -a OD_PROD'
   exec(`/tmp/sfdx/bin/sfdx auth:sfdxurl:store -f /tmp/sfdx_auth.txt ${params}`, function(error, stdout, stderr) {
     if (error) throw(stderr)
     core.info(stdout)
