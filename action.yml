@@ -5,5 +5,5 @@ inputs:
     description: Authorize a Salesforce org using an SFDX auth URL
     required: false
 runs:
-  using: 'node18'
+  using: 'node16'
   main: 'index.js'
