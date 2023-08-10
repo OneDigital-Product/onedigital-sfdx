@@ -1,0 +1,9 @@
+name: 'OneDigital sfdx'
+description: 'Installs sfdx and auths'
+inputs:
+  sfdx-auth-url:
+    description: Authorize a Salesforce org using an SFDX auth URL
+    required: false
+runs:
+  using: 'node18'
+  main: 'index.js'
