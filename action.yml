@@ -4,6 +4,9 @@ inputs:
   sfdx-auth-url:
     description: Authorize a Salesforce org using an SFDX auth URL
     required: false
+  org-alias:
+    description: Alias for the authenticated Salesforce org
+    required: false
 runs:
   using: 'node16'
   main: 'index.js'
