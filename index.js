@@ -28,8 +28,8 @@ function createAuthFile() {
 }
 
 function authSFDX() {
-  const devhubUsername = core.getInput('devhub-username') || 'OD_PROD'
-  const params = `--setdefaultdevhubusername -a ${devhubUsername}`
+  const orgAlias = core.getInput('org-alias') || 'OD_PROD'
+  const params = orgAlias === 'OD_PROD' ? `--setdefaultdevhubusername -a ${orgAlias}` : `-a ${orgAlias}`
   exec(`/tmp/sfdx/bin/sfdx auth:sfdxurl:store -f /tmp/sfdx_auth.txt ${params}`, function(error, stdout, stderr) {
     if (error) throw(stderr)
     core.info(stdout)
