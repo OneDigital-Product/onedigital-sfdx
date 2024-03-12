@@ -14,7 +14,7 @@ function installSFDX() {
   const unzip = 'tar xJf /tmp/sfdx-linux-x64.tar.xz -C /tmp/sfdx --strip-components 1'
   const install = 'echo "/tmp/sfdx/bin" >> $GITHUB_PATH'
   const version = '/tmp/sfdx/bin/sfdx --version && /tmp/sfdx/bin/sfdx plugins --core'
-    
+
   exec(`${download} && ${createDir} && ${unzip} && ${install} && ${version}`, function(error, stdout, stderr) {
     if (error) throw(stderr)
     core.info(stdout)
@@ -28,7 +28,8 @@ function createAuthFile() {
 }
 
 function authSFDX() {
-  const params = '--setdefaultdevhubusername -a OD_PROD'
+  const devhubUsername = core.getInput('devhub-username') || 'OD_PROD'
+  const params = `--setdefaultdevhubusername -a ${devhubUsername}`
   exec(`/tmp/sfdx/bin/sfdx auth:sfdxurl:store -f /tmp/sfdx_auth.txt ${params}`, function(error, stdout, stderr) {
     if (error) throw(stderr)
     core.info(stdout)
