@@ -9,11 +9,11 @@ try {
 }
 
 function installSFDX() {
-  const download = 'wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz -q -P /tmp'
+  const download = 'wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz -q -P /tmp'
   const createDir = 'mkdir /tmp/sfdx'
-  const unzip = 'tar xJf /tmp/sfdx-linux-x64.tar.xz -C /tmp/sfdx --strip-components 1'
-  const install = 'echo "/tmp/sfdx/bin" >> $GITHUB_PATH'
-  const version = '/tmp/sfdx/bin/sfdx --version && /tmp/sfdx/bin/sfdx plugins --core'
+  const unzip = 'tar xJf /tmp/sf-linux-x64.tar.xz -C /tmp/sf --strip-components 1'
+  const install = 'echo "/tmp/sf/bin" >> $GITHUB_PATH'
+  const version = '/tmp/sf/bin/sf --version && /tmp/sf/bin/sf plugins --core'
 
   exec(`${download} && ${createDir} && ${unzip} && ${install} && ${version}`, function(error, stdout, stderr) {
     if (error) throw(stderr)
@@ -30,9 +30,8 @@ function createAuthFile() {
 function authSFDX() {
   const orgAlias = core.getInput('org-alias') || 'OD_PROD'
   const params = orgAlias === 'OD_PROD' ? `--setdefaultdevhubusername -a ${orgAlias}` : `-a ${orgAlias}`
-  exec(`/tmp/sfdx/bin/sfdx auth:sfdxurl:store -f /tmp/sfdx_auth.txt ${params}`, function(error, stdout, stderr) {
+  exec(`/tmp/sf/bin/sfdx auth:sfdxurl:store -f /tmp/sfdx_auth.txt ${params}`, function(error, stdout, stderr) {
     if (error) throw(stderr)
     core.info(stdout)
   })
 }
-
