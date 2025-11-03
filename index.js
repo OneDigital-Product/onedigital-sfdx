@@ -10,7 +10,7 @@ try {
 
 function installSFDX() {
   const download = 'wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz -q -P /tmp'
-  const createDir = 'mkdir /tmp/sfdx'
+  const createDir = 'mkdir /tmp/sf'
   const unzip = 'tar xJf /tmp/sf-linux-x64.tar.xz -C /tmp/sf --strip-components 1'
   const install = 'echo "/tmp/sf/bin" >> $GITHUB_PATH'
   const version = '/tmp/sf/bin/sf --version && /tmp/sf/bin/sf plugins --core'
